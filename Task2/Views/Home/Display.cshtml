@@ -1,0 +1,185 @@
+﻿@model IEnumerable<Task2.Models.Employee>
+@using Task2.Models
+@{
+    ViewBag.Title = "Employees";
+}
+@{
+    IEnumerable<OrgDataAccess> ScreenElements = ViewBag.ScreenElements;
+}
+@if (ViewBag.Message != null)
+{
+    <div class="alert text-center text-warning"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>@ViewBag.Message</div>
+}
+<h2>Employees</h2>
+
+<table class="table table-striped table-hover dataTable" id="table-editable">
+    <thead>
+        <tr role="row">
+            @* PE1 *@
+            @if (ScreenElements.Any(s => s.DataAccessCode == "PE1"))
+            {
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Identify as</th>
+                <th>Preffered Language</th>
+                <th>Web Pay Statement</th>
+            }
+
+            @* PE2 *@
+            @if (ScreenElements.Any(s => s.DataAccessCode == "PE2"))
+            {
+                <th>Social Insurance Number </th>
+                <th>Birth Date </th>
+            }
+
+            @* PE3 *@
+            @if (ScreenElements.Any(s => s.DataAccessCode == "PE3"))
+            {
+                <th>Address </th>
+                <th>Address </th>
+                <th>City </th>
+                <th>Province </th>
+                <th>Postal Code </th>
+                <th>Country </th>
+                <th>Telephone </th>
+                <th>Alternate Telephone</th>
+                <th>Work Telephone</th>
+                <th>Ext.</th>
+                <th>Work Email Address</th>
+                <th>Personal Email Address</th>
+                <th>Email Communication Preference</th>
+                <th>Web T4</th>
+            }
+
+            @* PE4 *@
+            @if (ScreenElements.Any(s => s.DataAccessCode == "PE4"))
+            {
+                <th>Bank </th>
+                <th>Transit Number</th>
+                <th>Account Number </th>
+            }
+
+            @* PE5 *@
+            @if (ScreenElements.Any(s => s.DataAccessCode == "PE5"))
+            {
+                <th>Benefit Eligibility Date </th>
+                <th>Benefit Plan ID</th>
+            }
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (ScreenElements.Any(s => s.DataAccessCode == "PE1"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MiddleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrgGender.GenderCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PreferredLanguageId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrintStatementInd)
+                    </td>
+                }
+                @if (ScreenElements.Any(s => s.DataAccessCode == "PE2"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SocialInsuranceNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                }
+                @if (ScreenElements.Any(s => s.DataAccessCode == "PE3"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostalCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrgProvince.ProvinceCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CountryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telephone1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telephone2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkTelephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkEmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonalEmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailPreferenceFlag)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WebT4ConsentInd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkTelephoneExt)
+                    </td>
+
+                }
+                @if (ScreenElements.Any(s => s.DataAccessCode == "PE4"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BankId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BankTransitNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BankAccountNumber)
+                    </td>
+                }
+                @if (ScreenElements.Any(s => s.DataAccessCode == "PE5"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenefitEligibilityDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenefitCarrierNumber)
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EmpId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/table_editable.js"></script>
+}

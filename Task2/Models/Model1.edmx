@@ -1,0 +1,919 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hrplink_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpId" />
+          </Key>
+          <Property Name="EmpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SocialInsuranceNumber" Type="nvarchar" MaxLength="9" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="Address2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProvinceId" Type="int" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="Telephone1" Type="nvarchar" MaxLength="10" />
+          <Property Name="Telephone2" Type="nvarchar" MaxLength="10" />
+          <Property Name="WorkTelephone" Type="nvarchar" MaxLength="10" />
+          <Property Name="BankId" Type="int" />
+          <Property Name="BankTransitNumber" Type="nvarchar(max)" />
+          <Property Name="BankAccountNumber" Type="nvarchar(max)" />
+          <Property Name="PreferredLanguageId" Type="nvarchar" MaxLength="1" />
+          <Property Name="PrintStatementInd" Type="bit" />
+          <Property Name="SourceDocVerifiedInd" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="WorkEmailAddress" Type="nvarchar" MaxLength="256" />
+          <Property Name="PersonalEmailAddress" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailPreferenceFlag" Type="nvarchar" MaxLength="1" />
+          <Property Name="WebT4ConsentInd" Type="bit" />
+          <Property Name="BenefitEligibilityDate" Type="datetime" />
+          <Property Name="BenefitCarrierNumber" Type="nvarchar(max)" />
+          <Property Name="WorkTelephoneExt" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="OrgCountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="3" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Archive" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="OrgDataAccess">
+          <Key>
+            <PropertyRef Name="OrgDataAccessId" />
+          </Key>
+          <Property Name="OrgDataAccessId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataAccessCode" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Archive" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrgGender">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderCode" Type="char" MaxLength="1" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="20" />
+          <Property Name="Archive" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="OrgProvince">
+          <Key>
+            <PropertyRef Name="ProvinceId" />
+          </Key>
+          <Property Name="ProvinceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceCode" Type="varchar" MaxLength="3" />
+          <Property Name="OrgCountryId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Archive" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="PermissionDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermoissionHeaderID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="URL" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PermissionHeader">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SysCustomFields">
+          <Key>
+            <PropertyRef Name="SysCustomFieldsId" />
+          </Key>
+          <Property Name="SysCustomFieldsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="ColumnName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="CustomLabel" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="VisibleInd" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="MaxLength" Type="int" Nullable="false" />
+          <Property Name="Required" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SystemCustomField">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpID" Type="int" />
+        </EntityType>
+        <EntityType Name="TableDataAccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataAccessID" Type="int" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColumnName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ColumnLabel" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserElementPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableDataAccessID" Type="int" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermissionDetailID" Type="int" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_Employee_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_OrgGender">
+          <End Role="OrgGender" Type="Self.OrgGender" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgGender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_OrgProvince">
+          <End Role="OrgProvince" Type="Self.OrgProvince" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgProvince">
+              <PropertyRef Name="ProvinceId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgProvince_OrgCountry">
+          <End Role="OrgCountry" Type="Self.OrgCountry" Multiplicity="0..1" />
+          <End Role="OrgProvince" Type="Self.OrgProvince" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgCountry">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="OrgProvince">
+              <PropertyRef Name="OrgCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionDetail_PermissionHeader">
+          <End Role="PermissionHeader" Type="Self.PermissionHeader" Multiplicity="0..1" />
+          <End Role="PermissionDetail" Type="Self.PermissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionHeader">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionDetail">
+              <PropertyRef Name="PermoissionHeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemCustomField_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="SystemCustomField" Type="Self.SystemCustomField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="SystemCustomField">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableDataAccess_OrgDataAccess">
+          <End Role="OrgDataAccess" Type="Self.OrgDataAccess" Multiplicity="0..1" />
+          <End Role="TableDataAccess" Type="Self.TableDataAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgDataAccess">
+              <PropertyRef Name="OrgDataAccessId" />
+            </Principal>
+            <Dependent Role="TableDataAccess">
+              <PropertyRef Name="DataAccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserElementPermission_TableDataAccess">
+          <End Role="TableDataAccess" Type="Self.TableDataAccess" Multiplicity="0..1" />
+          <End Role="UserElementPermission" Type="Self.UserElementPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDataAccess">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserElementPermission">
+              <PropertyRef Name="TableDataAccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_PermissionDetail">
+          <End Role="PermissionDetail" Type="Self.PermissionDetail" Multiplicity="0..1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionDetail">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="PermissionDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hrplink_dbModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgCountry" EntityType="Self.OrgCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgDataAccess" EntityType="Self.OrgDataAccess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgGender" EntityType="Self.OrgGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgProvince" EntityType="Self.OrgProvince" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionDetail" EntityType="Self.PermissionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionHeader" EntityType="Self.PermissionHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysCustomFields" EntityType="Self.SysCustomFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemCustomField" EntityType="Self.SystemCustomField" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableDataAccess" EntityType="Self.TableDataAccess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserElementPermission" EntityType="Self.UserElementPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPermission" EntityType="Self.UserPermission" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employee_AspNetUsers" Association="Self.FK_Employee_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_OrgGender" Association="Self.FK_Employee_OrgGender">
+            <End Role="OrgGender" EntitySet="OrgGender" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_OrgProvince" Association="Self.FK_Employee_OrgProvince">
+            <End Role="OrgProvince" EntitySet="OrgProvince" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgProvince_OrgCountry" Association="Self.FK_OrgProvince_OrgCountry">
+            <End Role="OrgCountry" EntitySet="OrgCountry" />
+            <End Role="OrgProvince" EntitySet="OrgProvince" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionDetail_PermissionHeader" Association="Self.FK_PermissionDetail_PermissionHeader">
+            <End Role="PermissionHeader" EntitySet="PermissionHeader" />
+            <End Role="PermissionDetail" EntitySet="PermissionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemCustomField_Employee" Association="Self.FK_SystemCustomField_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="SystemCustomField" EntitySet="SystemCustomField" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableDataAccess_OrgDataAccess" Association="Self.FK_TableDataAccess_OrgDataAccess">
+            <End Role="OrgDataAccess" EntitySet="OrgDataAccess" />
+            <End Role="TableDataAccess" EntitySet="TableDataAccess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserElementPermission_TableDataAccess" Association="Self.FK_UserElementPermission_TableDataAccess">
+            <End Role="TableDataAccess" EntitySet="TableDataAccess" />
+            <End Role="UserElementPermission" EntitySet="UserElementPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_AspNetUsers" Association="Self.FK_UserPermission_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_PermissionDetail" Association="Self.FK_UserPermission_PermissionDetail">
+            <End Role="PermissionDetail" EntitySet="PermissionDetail" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hrplink_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserPermissions" Relationship="hrplink_dbModel.FK_UserPermission_AspNetUsers" FromRole="AspNetUser" ToRole="UserPermission" />
+          <NavigationProperty Name="Employees" Relationship="hrplink_dbModel.FK_Employee_AspNetUsers" FromRole="AspNetUser" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="OrgCountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Archive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="OrgProvinces" Relationship="Self.FK_OrgProvince_OrgCountry" FromRole="OrgCountry" ToRole="OrgProvince" />
+        </EntityType>
+        <EntityType Name="OrgDataAccess">
+          <Key>
+            <PropertyRef Name="OrgDataAccessId" />
+          </Key>
+          <Property Name="OrgDataAccessId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataAccessCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Archive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TableDataAccesses" Relationship="hrplink_dbModel.FK_TableDataAccess_OrgDataAccess" FromRole="OrgDataAccess" ToRole="TableDataAccess" />
+        </EntityType>
+        <EntityType Name="OrgGender">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Archive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="hrplink_dbModel.FK_Employee_OrgGender" FromRole="OrgGender" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="OrgProvince">
+          <Key>
+            <PropertyRef Name="ProvinceId" />
+          </Key>
+          <Property Name="ProvinceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="OrgCountryId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Archive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="OrgCountry" Relationship="Self.FK_OrgProvince_OrgCountry" FromRole="OrgProvince" ToRole="OrgCountry" />
+          <NavigationProperty Name="Employees" Relationship="hrplink_dbModel.FK_Employee_OrgProvince" FromRole="OrgProvince" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="SysCustomField">
+          <Key>
+            <PropertyRef Name="SysCustomFieldsId" />
+          </Key>
+          <Property Name="SysCustomFieldsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ColumnName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomLabel" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VisibleInd" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MaxLength" Type="Int32" Nullable="false" />
+          <Property Name="Required" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_OrgProvince_OrgCountry">
+          <End Role="OrgCountry" Type="Self.OrgCountry" Multiplicity="0..1" />
+          <End Role="OrgProvince" Type="Self.OrgProvince" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgCountry">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="OrgProvince">
+              <PropertyRef Name="OrgCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hrplink_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="OrgCountries" EntityType="Self.OrgCountry" />
+          <EntitySet Name="OrgDataAccesses" EntityType="Self.OrgDataAccess" />
+          <EntitySet Name="OrgGenders" EntityType="Self.OrgGender" />
+          <EntitySet Name="OrgProvinces" EntityType="Self.OrgProvince" />
+          <EntitySet Name="SysCustomFields" EntityType="Self.SysCustomField" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_OrgProvince_OrgCountry" Association="Self.FK_OrgProvince_OrgCountry">
+            <End Role="OrgCountry" EntitySet="OrgCountries" />
+            <End Role="OrgProvince" EntitySet="OrgProvinces" />
+          </AssociationSet>
+          <EntitySet Name="PermissionDetails" EntityType="hrplink_dbModel.PermissionDetail" />
+          <EntitySet Name="PermissionHeaders" EntityType="hrplink_dbModel.PermissionHeader" />
+          <EntitySet Name="SystemCustomFields" EntityType="hrplink_dbModel.SystemCustomField" />
+          <EntitySet Name="TableDataAccesses" EntityType="hrplink_dbModel.TableDataAccess" />
+          <EntitySet Name="UserElementPermissions" EntityType="hrplink_dbModel.UserElementPermission" />
+          <EntitySet Name="UserPermissions" EntityType="hrplink_dbModel.UserPermission" />
+          <AssociationSet Name="FK_UserPermission_AspNetUsers" Association="hrplink_dbModel.FK_UserPermission_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserPermission" EntitySet="UserPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionDetail_PermissionHeader" Association="hrplink_dbModel.FK_PermissionDetail_PermissionHeader">
+            <End Role="PermissionHeader" EntitySet="PermissionHeaders" />
+            <End Role="PermissionDetail" EntitySet="PermissionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_PermissionDetail" Association="hrplink_dbModel.FK_UserPermission_PermissionDetail">
+            <End Role="PermissionDetail" EntitySet="PermissionDetails" />
+            <End Role="UserPermission" EntitySet="UserPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserElementPermission_TableDataAccess" Association="hrplink_dbModel.FK_UserElementPermission_TableDataAccess">
+            <End Role="TableDataAccess" EntitySet="TableDataAccesses" />
+            <End Role="UserElementPermission" EntitySet="UserElementPermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableDataAccess_OrgDataAccess" Association="hrplink_dbModel.FK_TableDataAccess_OrgDataAccess">
+            <End Role="OrgDataAccess" EntitySet="OrgDataAccesses" />
+            <End Role="TableDataAccess" EntitySet="TableDataAccesses" />
+          </AssociationSet>
+          <EntitySet Name="Employees" EntityType="hrplink_dbModel.Employee" />
+          <AssociationSet Name="FK_Employee_AspNetUsers" Association="hrplink_dbModel.FK_Employee_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_OrgGender" Association="hrplink_dbModel.FK_Employee_OrgGender">
+            <End Role="OrgGender" EntitySet="OrgGenders" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_OrgProvince" Association="hrplink_dbModel.FK_Employee_OrgProvince">
+            <End Role="OrgProvince" EntitySet="OrgProvinces" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemCustomField_Employee" Association="hrplink_dbModel.FK_SystemCustomField_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="SystemCustomField" EntitySet="SystemCustomFields" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PermissionDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermoissionHeaderID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PermissionHeader" Relationship="hrplink_dbModel.FK_PermissionDetail_PermissionHeader" FromRole="PermissionDetail" ToRole="PermissionHeader" />
+          <NavigationProperty Name="UserPermissions" Relationship="hrplink_dbModel.FK_UserPermission_PermissionDetail" FromRole="PermissionDetail" ToRole="UserPermission" />
+          <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PermissionHeader">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PermissionDetails" Relationship="hrplink_dbModel.FK_PermissionDetail_PermissionHeader" FromRole="PermissionHeader" ToRole="PermissionDetail" />
+        </EntityType>
+        <EntityType Name="SystemCustomField">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpID" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="hrplink_dbModel.FK_SystemCustomField_Employee" FromRole="SystemCustomField" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="TableDataAccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataAccessID" Type="Int32" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserElementPermissions" Relationship="hrplink_dbModel.FK_UserElementPermission_TableDataAccess" FromRole="TableDataAccess" ToRole="UserElementPermission" />
+          <NavigationProperty Name="OrgDataAccess" Relationship="hrplink_dbModel.FK_TableDataAccess_OrgDataAccess" FromRole="TableDataAccess" ToRole="OrgDataAccess" />
+          <Property Name="ColumnLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserElementPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableDataAccessID" Type="Int32" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableDataAccess" Relationship="hrplink_dbModel.FK_UserElementPermission_TableDataAccess" FromRole="UserElementPermission" ToRole="TableDataAccess" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionDetailID" Type="Int32" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="hrplink_dbModel.FK_UserPermission_AspNetUsers" FromRole="UserPermission" ToRole="AspNetUser" />
+          <NavigationProperty Name="PermissionDetail" Relationship="hrplink_dbModel.FK_UserPermission_PermissionDetail" FromRole="UserPermission" ToRole="PermissionDetail" />
+        </EntityType>
+        <Association Name="FK_UserPermission_AspNetUsers">
+          <End Type="hrplink_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.UserPermission" Role="UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionDetail_PermissionHeader">
+          <End Type="hrplink_dbModel.PermissionHeader" Role="PermissionHeader" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.PermissionDetail" Role="PermissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionHeader">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionDetail">
+              <PropertyRef Name="PermoissionHeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_PermissionDetail">
+          <End Type="hrplink_dbModel.PermissionDetail" Role="PermissionDetail" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.UserPermission" Role="UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionDetail">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="PermissionDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserElementPermission_TableDataAccess">
+          <End Type="hrplink_dbModel.TableDataAccess" Role="TableDataAccess" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.UserElementPermission" Role="UserElementPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDataAccess">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserElementPermission">
+              <PropertyRef Name="TableDataAccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableDataAccess_OrgDataAccess">
+          <End Type="hrplink_dbModel.OrgDataAccess" Role="OrgDataAccess" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.TableDataAccess" Role="TableDataAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgDataAccess">
+              <PropertyRef Name="OrgDataAccessId" />
+            </Principal>
+            <Dependent Role="TableDataAccess">
+              <PropertyRef Name="DataAccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpId" />
+          </Key>
+          <Property Name="EmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SocialInsuranceNumber" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="Telephone1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="WorkTelephone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BankId" Type="Int32" />
+          <Property Name="BankTransitNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BankAccountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredLanguageId" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="PrintStatementInd" Type="Boolean" />
+          <Property Name="SourceDocVerifiedInd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="WorkEmailAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalEmailAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailPreferenceFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="WebT4ConsentInd" Type="Boolean" />
+          <Property Name="BenefitEligibilityDate" Type="DateTime" Precision="3" />
+          <Property Name="BenefitCarrierNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkTelephoneExt" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="hrplink_dbModel.FK_Employee_AspNetUsers" FromRole="Employee" ToRole="AspNetUser" />
+          <NavigationProperty Name="OrgGender" Relationship="hrplink_dbModel.FK_Employee_OrgGender" FromRole="Employee" ToRole="OrgGender" />
+          <NavigationProperty Name="OrgProvince" Relationship="hrplink_dbModel.FK_Employee_OrgProvince" FromRole="Employee" ToRole="OrgProvince" />
+          <NavigationProperty Name="SystemCustomFields" Relationship="hrplink_dbModel.FK_SystemCustomField_Employee" FromRole="Employee" ToRole="SystemCustomField" />
+        </EntityType>
+        <Association Name="FK_Employee_AspNetUsers">
+          <End Type="hrplink_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_OrgGender">
+          <End Type="hrplink_dbModel.OrgGender" Role="OrgGender" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgGender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_OrgProvince">
+          <End Type="hrplink_dbModel.OrgProvince" Role="OrgProvince" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgProvince">
+              <PropertyRef Name="ProvinceId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemCustomField_Employee">
+          <End Type="hrplink_dbModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="hrplink_dbModel.SystemCustomField" Role="SystemCustomField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="SystemCustomField">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hrplink_dbModelStoreContainer" CdmEntityContainer="hrplink_dbEntities">
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="hrplink_dbModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgCountries">
+            <EntityTypeMapping TypeName="hrplink_dbModel.OrgCountry">
+              <MappingFragment StoreEntitySet="OrgCountry">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgDataAccesses">
+            <EntityTypeMapping TypeName="hrplink_dbModel.OrgDataAccess">
+              <MappingFragment StoreEntitySet="OrgDataAccess">
+                <ScalarProperty Name="OrgDataAccessId" ColumnName="OrgDataAccessId" />
+                <ScalarProperty Name="DataAccessCode" ColumnName="DataAccessCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgGenders">
+            <EntityTypeMapping TypeName="hrplink_dbModel.OrgGender">
+              <MappingFragment StoreEntitySet="OrgGender">
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgProvinces">
+            <EntityTypeMapping TypeName="hrplink_dbModel.OrgProvince">
+              <MappingFragment StoreEntitySet="OrgProvince">
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
+                <ScalarProperty Name="OrgCountryId" ColumnName="OrgCountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysCustomFields">
+            <EntityTypeMapping TypeName="hrplink_dbModel.SysCustomField">
+              <MappingFragment StoreEntitySet="SysCustomFields">
+                <ScalarProperty Name="SysCustomFieldsId" ColumnName="SysCustomFieldsId" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="CustomLabel" ColumnName="CustomLabel" />
+                <ScalarProperty Name="VisibleInd" ColumnName="VisibleInd" />
+                <ScalarProperty Name="MaxLength" ColumnName="MaxLength" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="hrplink_dbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionDetails">
+            <EntityTypeMapping TypeName="hrplink_dbModel.PermissionDetail">
+              <MappingFragment StoreEntitySet="PermissionDetail">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PermoissionHeaderID" ColumnName="PermoissionHeaderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionHeaders">
+            <EntityTypeMapping TypeName="hrplink_dbModel.PermissionHeader">
+              <MappingFragment StoreEntitySet="PermissionHeader">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemCustomFields">
+            <EntityTypeMapping TypeName="hrplink_dbModel.SystemCustomField">
+              <MappingFragment StoreEntitySet="SystemCustomField">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableDataAccesses">
+            <EntityTypeMapping TypeName="hrplink_dbModel.TableDataAccess">
+              <MappingFragment StoreEntitySet="TableDataAccess">
+                <ScalarProperty Name="ColumnLabel" ColumnName="ColumnLabel" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="DataAccessID" ColumnName="DataAccessID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserElementPermissions">
+            <EntityTypeMapping TypeName="hrplink_dbModel.UserElementPermission">
+              <MappingFragment StoreEntitySet="UserElementPermission">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TableDataAccessID" ColumnName="TableDataAccessID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPermissions">
+            <EntityTypeMapping TypeName="hrplink_dbModel.UserPermission">
+              <MappingFragment StoreEntitySet="UserPermission">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PermissionDetailID" ColumnName="PermissionDetailID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="hrplink_dbModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="WorkTelephoneExt" ColumnName="WorkTelephoneExt" />
+                <ScalarProperty Name="BenefitCarrierNumber" ColumnName="BenefitCarrierNumber" />
+                <ScalarProperty Name="BenefitEligibilityDate" ColumnName="BenefitEligibilityDate" />
+                <ScalarProperty Name="WebT4ConsentInd" ColumnName="WebT4ConsentInd" />
+                <ScalarProperty Name="EmailPreferenceFlag" ColumnName="EmailPreferenceFlag" />
+                <ScalarProperty Name="PersonalEmailAddress" ColumnName="PersonalEmailAddress" />
+                <ScalarProperty Name="WorkEmailAddress" ColumnName="WorkEmailAddress" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SourceDocVerifiedInd" ColumnName="SourceDocVerifiedInd" />
+                <ScalarProperty Name="PrintStatementInd" ColumnName="PrintStatementInd" />
+                <ScalarProperty Name="PreferredLanguageId" ColumnName="PreferredLanguageId" />
+                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+                <ScalarProperty Name="BankTransitNumber" ColumnName="BankTransitNumber" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="WorkTelephone" ColumnName="WorkTelephone" />
+                <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+                <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SocialInsuranceNumber" ColumnName="SocialInsuranceNumber" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
